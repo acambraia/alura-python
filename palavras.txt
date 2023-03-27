@@ -6,3 +6,6 @@ pera
 coco
 banana
 figo
+framboesa
+kiwi
+amora
