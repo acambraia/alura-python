@@ -4,12 +4,12 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 
 # Carregar o conjunto de dados
-dataset = pd.read_csv('clientes.csv')
+dataset = pd.read_csv('baseClientes.csv')
 
-# Selecionar apenas as colunas de quartos e taxa de criminalidade
-X = dataset[['conta_recente', 'cliente_recente', 'cnae_recente', 'faturamento_recente']].values
+# Selecionar apenas as colunas com as informações relevantes
+X = dataset[['contanova', 'dataconstituicao', 'datarelacionamento', 'atividadeeconomica', 'faturamento', 'quadrosocial', 'inadimplenciacontador', 'empresaprivada', 'faturamento5m']].values
 
-# Selecionar o preço como variável de saída
+# Selecionar a coluna com as informações de saida
 y = dataset['fraude'].values
 
 # Treinar o modelo de regressão linear
@@ -26,7 +26,7 @@ def predict():
     data = request.get_json()
 
     # Converter os dados em um array numpy
-    data = np.array([[data['conta_recente'], data['cliente_recente'], data['cnae_recente'], data['faturamento_recente']]])
+    data = np.array([[data['contanova'], data['dataconstituicao'], data['datarelacionamento'], data['atividadeeconomica'], data['faturamento'], data['quadrosocial'], data['inadimplenciacontador'], data['empresaprivada'], data['faturamento5m']]])
 
     # Fazer a previsão com base nos dados de entrada
     prediction = regressor.predict(data)
